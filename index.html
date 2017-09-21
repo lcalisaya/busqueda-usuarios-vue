@@ -15,12 +15,12 @@
 
     <template id="usuarios-template"> 
         <div>
-            <section>
+            <section class="cabecera">
                 <slot></slot>
                 <input type="search" placeholder="Filtrar usuarios">
             </section>
             <hr>
-            <section>
+            <section class="usuarios">
                 <p v-for="usuario in usuarios">{{usuario}}</p>
             </section>
         </div>
