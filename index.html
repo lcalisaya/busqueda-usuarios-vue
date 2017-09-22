@@ -10,18 +10,30 @@
 <body>
 
     <main>
-        <usuarios></usuarios>
+        <usuarios>
+            <h1>Usuarios de la startup de Juan Andrés Nuñez</h1>
+        </usuarios>
     </main>
 
     <template id="usuarios-template"> 
         <div>
             <section class="cabecera">
                 <slot></slot>
-                <input type="search" placeholder="Filtrar usuarios">
+                <input type="search" placeholder="Filtrar usuarios" v-model="busqueda">
             </section>
             <hr>
             <section class="usuarios">
-                <p v-for="usuario in usuarios">{{usuario}}</p>
+                <usuario :datos="usuario" v-for="usuario in filtrarUsuarios" :key="usuario.correoe"></usuario>
+            </section>
+        </div>
+    </template>
+    
+    <template id="usuario-template">
+        <div class="usuario">
+            <img align="left" :src="datos.foto" :alt="datos.nombre">
+            <section>
+                <h1>{{ datos.nombre }}</h1>
+                <small>{{ datos.correoe }}</small>
             </section>
         </div>
     </template>

@@ -19,13 +19,28 @@ Vue.component('usuarios', {
     data() {
         return {
             usuarios: [],
-
+            busqueda: ''
+        }
+    }, 
+    //Retorna en un array todos los usuarios que tengan un nombre parecido o igual
+    //al ingresado en el input/entrada de datos
+    computed: {
+        filtrarUsuarios(){
+            return this.usuarios.filter((usuario) => {
+                return usuario.nombre.includes(this.busqueda);
+            });
         }
     }
 });
 
-//Para que Vue pueda acceder al DOM. Todo lo que esté adentro del tag <main> va a ser considerado por Vue.
+//Este componente renderiza 1 usuario y está anidado en el componente <usuarios>
+Vue.component('usuario', {
+    props: ['datos'],
+    template: '#usuario-template',
+});
+
+//Para que Vue pueda acceder al DOM se declara un objeto de Vue
+//Todo lo que esté adentro del tag <main> va a ser considerado por Vue
 new Vue({
     el:'main'
 });
-
